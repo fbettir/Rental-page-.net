@@ -39,17 +39,20 @@ namespace RentalPage.Bll.Services
 
         public async Task DeleteRentItemsAsync()
         {
-            foreach (var id in _context.RentItems.Select(e => e.Id))
+
+            RentItem[] items = _context.RentItems.ToArray();
+            foreach (var item in items)
             {
-                RentItem entity = new RentItem(null!) { Id = id };
-                _context.RentItems.Remove(entity);
+                _context.RentItems.Remove(new RentItem(null!) { Id = item.Id });
+                int a = 10;
+
                 try
                 {
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!await _context.RentItems.AnyAsync(p => p.Id == entity.Id))
+                    if (!await _context.RentItems.AnyAsync(p => p.Id == item.Id))
                         throw new EntityNotFoundException("Nem található az eszköz");
                     else
                         throw;
@@ -88,7 +91,6 @@ namespace RentalPage.Bll.Services
             var efRentItem = _mapper.Map<RentItem>(updatedRentItem);
             efRentItem.Id = rentItemId;
             var entry = _context.Attach(efRentItem);
-            
             entry.State = EntityState.Modified;
             try
             {

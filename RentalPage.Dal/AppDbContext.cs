@@ -23,6 +23,20 @@ namespace RentalPage.Dal
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.UseHiLo("DBSequenceHiLo");
+            modelBuilder.HasSequence<int>("DBSequenceHiLo")
+                .StartsAt(1000).IncrementsBy(50);
+
+            modelBuilder.Entity<RentedItem>().Property(x => x.Id).UseHiLo("DBSequenceHiLo");
+            modelBuilder.Entity<RentItem>().Property(x => x.Id).UseHiLo("DBSequenceHiLo");
+            modelBuilder.Entity<User>().Property(x => x.Id).UseHiLo("DBSequenceHiLo");
+
+
+
+            modelBuilder.Entity<User>().HasKey(x => x.Id);
+            modelBuilder.Entity<RentedItem>().HasKey(x => x.Id);
+            modelBuilder.Entity<RentItem>().HasKey(x => x.Id);
+
             modelBuilder.Entity<RentedItem>()
                 .HasOne(r => r.RentItem)
                 .WithOne(r => r.RentedItem)
@@ -49,6 +63,7 @@ namespace RentalPage.Dal
 
             modelBuilder.Entity<RentItem>().HasData(
                 new RentItem
+
                 {
                     Id = 1, 
                     Name = "síléc", 

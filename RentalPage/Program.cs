@@ -27,7 +27,7 @@ builder.Services.AddControllers(options => options.EnableEndpointRouting = true)
 builder.Services.AddAutoMapper(typeof(WebApiProfile));
 builder.Services.AddOpenApiDocument();
 builder.Services.AddDbContext<AppDbContext>(o =>
-    o.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+    o.UseSqlServer(builder.Configuration["ConnectionStrings:AzureConnString"]));
 
 builder.Services.AddTransient<IRentItemService, RentItemService>();
 builder.Services.AddTransient<IUserService, UserService>();
