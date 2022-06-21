@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RentalPage.Api</name>
+    </assembly>
+    <members>
+        <member name="M:RentalPage.Api.Controllers.RentedItemController.Get">
+            <summary>
+            Get all rented items.
+            </summary>
+            <returns>Returns all items you can rent</returns>
+            <response code="200">Listing successful</response>
+        </member>
+        <member name="M:RentalPage.Api.Controllers.RentedItemController.Get(System.Int32)">
+            <summary>
+            Get a specific rented item with the given identifier
+            </summary>
+            <param name="id">Product's identifier</param>
+            <returns>Returns a specific product with the given identifier</returns>
+            <response code="200">Listing successful</response>
+            <response code="404">Rented item not found</response>
+            <response code="400">Validation error</response>
+        </member>
+        <member name="M:RentalPage.Api.Controllers.RentedItemController.Post(RentalPage.Bll.Dtos.RentedItemDto)">
+            <summary>
+            Add a rented item in body (with user identifier, rent item identifier, start date, end date)
+            </summary>
+            <returns>Returns a specific product with the given identifier</returns>
+            <response code="201">Creating successful</response>
+            <response code="500">Internal Server Error</response>
+            <response code="400">Validation error</response>
+        </member>
+        <member name="M:RentalPage.Api.Controllers.RentedItemController.Put(System.Int32,RentalPage.Bll.Dtos.RentedItemDto)">
+            <summary>
+            Update a rented item with the given identifier, and values in body
+            </summary>
+            <param name="id">Product's identifier</param>
+            <param name="rentedItem">######</param>
+            <returns>Returns a specific product with the given identifier</returns>
+            <response code="204">Update successful</response>
+            <response code="500">Internal Server Error</response>
+            <response code="409">Conflict</response>
+            <response code="400">Validation error</response>
+        </member>
+        <member name="M:RentalPage.Api.Controllers.RentedItemController.Delete(System.Int32)">
+            <summary>
+            Delete a rented item with the given identifier
+            </summary>
+            <param name="id">Product's identifier</param>
+            <returns>Returns a specific product with the given identifier</returns>
+            <response code="204">Delete successful</response>
+            <response code="500">Internal Server Error</response>
+            <response code="404">Not found</response>
+            <response code="400">Validation error</response>
+        </member>
+        <member name="M:RentalPage.Api.Controllers.RentalPageController.Post(RentalPage.Bll.Dtos.RentItemDto)">
+            <summary>
+            Creates a new product
+            </summary>
+            <param name="product">The product to create</param>
+            <returns>Returns the product inserted</returns>
+            <response code="201">Insert successful</response>
+        </member>
+    </members>
+</doc>
